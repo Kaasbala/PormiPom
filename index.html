@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="gallery" id="gallery"></div>
+
+    <script>
+        // JavaScript to dynamically load images from a folder
+        const gallery = document.getElementById('gallery');
+        const imageFolder = 'images/'; // Folder where images are stored
+        const imageCount = 30; // Number of images (adjust according to your needs)
+
+        // Loop through and create image elements dynamically
+        for (let i = 1; i <= imageCount; i++) {
+            const img = document.createElement('img');
+            img.src = `${imageFolder}image${i}.jpg`; // Assuming images are named image1.jpg, image2.jpg, etc.
+            img.alt = `Image ${i}`;
+            gallery.appendChild(img);
+        }
+    </script>
+</body>
+</html>
