@@ -2,7 +2,6 @@ body {
     background-color: #000000; /* Full page black background */
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Prevents scrolling when image is fullscreen */
 }
 
 #gallery {
@@ -28,5 +27,17 @@ img:focus {
 img:hover {
     transform: scale(1.2); /* Increase size of image when hovered */
     z-index: 10; /* Bring image to the front */
+}
+
+/* Fullscreen Image (initially hidden) */
+.fullscreen {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the image */
+    z-index: 1000; /* Bring image to the front */
+    max-width: 90vw; /* Ensure the image retains its aspect ratio and is not stretched */
+    max-height: 90vh; /* Ensure the image retains its aspect ratio and is not stretched */
+    object-fit: contain; /* Prevent stretching, keep aspect ratio intact */
 }
 

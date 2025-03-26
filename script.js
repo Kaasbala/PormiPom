@@ -36,36 +36,22 @@ document.addEventListener("DOMContentLoaded", function() {
         if (event.target.tagName === 'IMG') {
             const clickedImage = event.target;
 
+            // Check if the clicked image is already fullscreen
             if (fullscreenImage === clickedImage) {
                 // If the clicked image is already fullscreen, return it to its original place
-                clickedImage.style.position = '';
-                clickedImage.style.zIndex = '';
-                clickedImage.style.width = '';
-                clickedImage.style.height = '';
-                clickedImage.style.transform = '';
+                clickedImage.classList.remove('fullscreen');
+                document.body.style.overflow = ''; // Allow scrolling again
                 fullscreenImage = null; // Reset the fullscreen image state
             } else {
                 // If a different image is clicked, make it fullscreen
                 if (fullscreenImage) {
                     // Reset the previously fullscreen image
-                    fullscreenImage.style.position = '';
-                    fullscreenImage.style.zIndex = '';
-                    fullscreenImage.style.width = '';
-                    fullscreenImage.style.height = '';
-                    fullscreenImage.style.transform = '';
+                    fullscreenImage.classList.remove('fullscreen');
                 }
 
-                // Make the clicked image fullscreen and centered
-                clickedImage.style.position = 'fixed';
-                clickedImage.style.top = '50%';
-                clickedImage.style.left = '50%';
-                clickedImage.style.transform = 'translate(-50%, -50%)'; // Center the image
-                clickedImage.style.zIndex = '1000'; // Bring it to the front
-                clickedImage.style.maxWidth = '90vw'; // Ensure the image retains its aspect ratio and is not stretched
-                clickedImage.style.maxHeight = '90vh'; // Ensure the image retains its aspect ratio and is not stretched
-                clickedImage.style.objectFit = 'contain'; // Prevent stretching, keep the aspect ratio intact
-
-                // Set the clicked image as the current fullscreen image
+                // Make the clicked image fullscreen
+                clickedImage.classList.add('fullscreen');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when image is fullscreen
                 fullscreenImage = clickedImage;
             }
         }
