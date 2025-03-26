@@ -1,70 +1,32 @@
-/* Reset and basic styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     background-color: #000000; /* Full page black background */
-    height: 100vh;
     margin: 0;
-    font-family: Arial, sans-serif;
+    padding: 0;
+    overflow: hidden; /* Prevents scrolling when image is fullscreen */
 }
 
-/* Header styling */
-.header {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.header h1 {
-    font-size: 4rem;
-    font-weight: bold;
-    color: red;
-    text-shadow: 2px 2px 10px rgba(255, 0, 0, 0.7);
-}
-
-/* Gallery grid */
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+#gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 10px;
-    max-width: 100%;
     padding: 20px;
 }
 
-.gallery img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, z-index 0.3s ease, border 0.3s ease; /* Added transition for border */
-    border: 2px solid red; /* Red border around each image */
+img {
+    width: 200px; /* Default image size */
+    height: 200px; /* Default image size */
+    object-fit: cover; /* Maintain aspect ratio while filling the image box */
+    transition: transform 0.3s, z-index 0s; /* Smooth transition for hover effects */
+    border: 2px solid red; /* Red border for images */
 }
 
-/* Hover effect for images */
-.gallery img:hover {
-    transform: scale(1.5); /* Increase size */
-    z-index: 10; /* Bring to the foreground */
-    border: 3px solid red; /* Slightly thicker border on hover */
+img:focus {
+    outline: none;
 }
 
-/* Responsive grid adjustments */
-@media (min-width: 1024px) {
-    .gallery {
-        grid-template-columns: repeat(10, 1fr);
-    }
+img:hover {
+    transform: scale(1.2); /* Increase size of image when hovered */
+    z-index: 10; /* Bring image to the front */
 }
 
-@media (max-width: 1023px) {
-    .gallery {
-        grid-template-columns: repeat(5, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
-    .gallery {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
