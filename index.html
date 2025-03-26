@@ -4,73 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Gallery</title>
-    <style>
-        body {
-            background-color: #000000 !important; /* Full page black background */
-            height: 100vh;
-            margin: 0;
-            text-align: center;
-        }
-        .title {
-            color: red;
-            font-size: 50px;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(10, 1fr); /* 10 images per row */
-            gap: 10px;
-            padding: 20px;
-            max-width: 100%;
-            background: transparent;
-        }
-        .gallery img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            border-radius: 5px;
-        }
-    </style>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="title">🔥 Porno Plazia 💋</div>
+    <div class="header">
+        <h1>🔥 Porno Plazia 💋</h1>
+    </div>
+
     <div class="gallery" id="gallery"></div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const gallery = document.getElementById('gallery');
-            const extensions = ['jpg', 'jpeg', 'png']; // Supported image formats
-            let index = 1;
-
-            function loadImages() {
-                for (let i = 0; i < 50; i++) { // Load images in batches of 50
-                    extensions.forEach(ext => {
-                        const img = new Image();
-                        img.alt = `Image ${index}`;
-                        img.onload = function() {
-                            gallery.appendChild(img);
-                        };
-                        img.onerror = function() {
-                            img.remove(); // Remove if image doesn't exist
-                        };
-                        img.src = `${index}.${ext}`; // Images are in the same directory
-                    });
-                    index++;
-                }
-            }
-
-            // Load initial set of images
-            loadImages();
-
-            // Infinite scroll event
-            window.addEventListener('scroll', () => {
-                if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
-                    loadImages();
-                }
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
