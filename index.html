@@ -11,7 +11,7 @@
         }
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            grid-template-columns: repeat(10, 1fr); /* 10 images per row */
             gap: 10px;
             padding: 20px;
             max-width: 100%;
@@ -36,17 +36,15 @@
             const extensions = ['jpg', 'jpeg', 'png']; // Supported image formats
 
             for (let i = 1; i <= imageCount; i++) {
-                let found = false;
-                extensions.forEach(ext => {
-                    if (!found) {
-                        const img = document.createElement('img');
-                        img.src = `${imageFolder}${i}.${ext}`;
-                        img.alt = `Image ${i}`;
-                        img.onerror = () => img.remove(); // Remove if image doesn't exist
-                        img.onload = () => found = true; // Stop checking other formats once found
-                        gallery.appendChild(img);
-                    }
-                });
+                let img = new Image();
+                img.alt = `Image ${i}`;
+                img.onload = function() {
+                    gallery.appendChild(img);
+                };
+                img.onerror = function() {
+                    img.remove(); // Remove if image doesn't exist
+                };
+                img.src = `${imageFolder}${i}.jpg`; // Try .jpg first
             }
         });
     </script>
