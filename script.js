@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (fullscreenImage === clickedImage) {
                 // If the clicked image is already fullscreen, return it to its original place
                 clickedImage.classList.remove('fullscreen');
-                document.body.style.overflow = ''; // Allow scrolling again
+                document.body.style.overflow = 'auto'; // Allow scrolling again
                 fullscreenImage = null; // Reset the fullscreen image state
             } else {
                 // If a different image is clicked, make it fullscreen
