@@ -2,6 +2,7 @@ body {
     background-color: #000000; /* Full page black background */
     margin: 0;
     padding: 0;
+    overflow: hidden; /* Prevent scrolling when an image is fullscreen */
 }
 
 #gallery {
@@ -18,6 +19,7 @@ img {
     object-fit: cover; /* Maintain aspect ratio while filling the image box */
     transition: transform 0.3s, z-index 0s; /* Smooth transition for hover effects */
     border: 2px solid red; /* Red border for images */
+    cursor: pointer; /* Change cursor to pointer on hover */
 }
 
 img:focus {
@@ -39,5 +41,5 @@ img:hover {
     max-width: 90vw; /* Ensure the image retains its aspect ratio and is not stretched */
     max-height: 90vh; /* Ensure the image retains its aspect ratio and is not stretched */
     object-fit: contain; /* Prevent stretching, keep aspect ratio intact */
+    cursor: zoom-out; /* Change cursor when hovering over the fullscreen image */
 }
-
