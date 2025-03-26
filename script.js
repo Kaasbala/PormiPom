@@ -28,6 +28,37 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    // Variables for fullscreen image handling
+    let fullscreenImage = null;
+
+    // Click event for images to go fullscreen
+    gallery.addEventListener('click', function(event) {
+        if (event.target.tagName === 'IMG') {
+            const clickedImage = event.target;
+
+            // If there's already a fullscreen image, remove it
+            if (fullscreenImage) {
+                fullscreenImage.style.position = '';
+                fullscreenImage.style.zIndex = '';
+                fullscreenImage.style.width = '';
+                fullscreenImage.style.height = '';
+                fullscreenImage.style.transform = '';
+            }
+
+            // Make the clicked image fullscreen
+            clickedImage.style.position = 'fixed';
+            clickedImage.style.top = '50%';
+            clickedImage.style.left = '50%';
+            clickedImage.style.transform = 'translate(-50%, -50%)';
+            clickedImage.style.zIndex = '1000'; // Bring it to the front
+            clickedImage.style.width = '80vw'; // Adjust size as needed
+            clickedImage.style.height = '80vh'; // Adjust size as needed
+
+            // Set the clicked image as the current fullscreen image
+            fullscreenImage = clickedImage;
+        }
+    });
+
     // Hover effect to enlarge and bring the image to the foreground
     const images = gallery.querySelectorAll('img');
 
