@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const gallery = document.getElementById('gallery');
     const imageFolder = './'; // Images are stored in the same directory
-    const imageCount = 50; // Adjust to the number of images in your directory
+    const imageCount = 200; // Adjust to the number of images in your directory
     const extensions = ['jpg', 'jpeg', 'png']; // Supported image formats
 
     for (let i = 1; i <= imageCount; i++) {
