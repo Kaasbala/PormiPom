@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     images.forEach(img => {
         img.addEventListener('mouseenter', function() {
-            img.style.transform = 'scale(1.2)'; // Increase size
+            img.style.transform = 'scale(1.8)'; // Increase size
             img.style.zIndex = '10'; // Bring to the front
             img.style.border = `3px solid ${getRandomColor()}`; // Change border to a new random color on hover
         });
