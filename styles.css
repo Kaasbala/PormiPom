@@ -38,8 +38,8 @@ img:hover {
     left: 50%;
     transform: translate(-50%, -50%); /* Center the image */
     z-index: 1000; /* Bring image to the front */
-    max-width: 95vw; /* Make sure the image doesn't stretch too much */
-    max-height: 95vh; /* Make sure the image doesn't stretch too much */
+    max-width: 300vw; /* Make sure the image doesn't stretch too much */
+    max-height: 300vh; /* Make sure the image doesn't stretch too much */
     object-fit: contain; /* Prevent stretching, keep aspect ratio intact */
     cursor: zoom-out; /* Change cursor when hovering over the fullscreen image */
 }
