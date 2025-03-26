@@ -28,34 +28,45 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Variables for fullscreen image handling
+    // Variable to store the state of the currently fullscreen image
     let fullscreenImage = null;
 
-    // Click event for images to go fullscreen
+    // Click event for images to toggle fullscreen
     gallery.addEventListener('click', function(event) {
         if (event.target.tagName === 'IMG') {
             const clickedImage = event.target;
 
-            // If there's already a fullscreen image, remove it
-            if (fullscreenImage) {
-                fullscreenImage.style.position = '';
-                fullscreenImage.style.zIndex = '';
-                fullscreenImage.style.width = '';
-                fullscreenImage.style.height = '';
-                fullscreenImage.style.transform = '';
+            if (fullscreenImage === clickedImage) {
+                // If the clicked image is already fullscreen, return it to its original place
+                clickedImage.style.position = '';
+                clickedImage.style.zIndex = '';
+                clickedImage.style.width = '';
+                clickedImage.style.height = '';
+                clickedImage.style.transform = '';
+                fullscreenImage = null; // Reset the fullscreen image state
+            } else {
+                // If a different image is clicked, make it fullscreen
+                if (fullscreenImage) {
+                    // Reset the previously fullscreen image
+                    fullscreenImage.style.position = '';
+                    fullscreenImage.style.zIndex = '';
+                    fullscreenImage.style.width = '';
+                    fullscreenImage.style.height = '';
+                    fullscreenImage.style.transform = '';
+                }
+
+                // Make the clicked image fullscreen
+                clickedImage.style.position = 'fixed';
+                clickedImage.style.top = '50%';
+                clickedImage.style.left = '50%';
+                clickedImage.style.transform = 'translate(-50%, -50%)';
+                clickedImage.style.zIndex = '1000'; // Bring it to the front
+                clickedImage.style.width = '80vw'; // Adjust size as needed
+                clickedImage.style.height = '80vh'; // Adjust size as needed
+
+                // Set the clicked image as the current fullscreen image
+                fullscreenImage = clickedImage;
             }
-
-            // Make the clicked image fullscreen
-            clickedImage.style.position = 'fixed';
-            clickedImage.style.top = '50%';
-            clickedImage.style.left = '50%';
-            clickedImage.style.transform = 'translate(-50%, -50%)';
-            clickedImage.style.zIndex = '1000'; // Bring it to the front
-            clickedImage.style.width = '80vw'; // Adjust size as needed
-            clickedImage.style.height = '80vh'; // Adjust size as needed
-
-            // Set the clicked image as the current fullscreen image
-            fullscreenImage = clickedImage;
         }
     });
 
