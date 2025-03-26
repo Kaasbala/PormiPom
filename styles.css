@@ -39,13 +39,15 @@ body {
     height: auto;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, z-index 0.3s ease; /* Added transition for z-index */
+    transition: transform 0.3s ease, z-index 0.3s ease, border 0.3s ease; /* Added transition for border */
+    border: 2px solid red; /* Red border around each image */
 }
 
 /* Hover effect for images */
 .gallery img:hover {
-    transform: scale(1.2); /* Increase size */
+    transform: scale(1.5); /* Increase size */
     z-index: 10; /* Bring to the foreground */
+    border: 3px solid red; /* Slightly thicker border on hover */
 }
 
 /* Responsive grid adjustments */
