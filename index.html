@@ -10,18 +10,22 @@
     <div class="gallery" id="gallery"></div>
 
     <script>
-        // JavaScript to dynamically load images from a folder
-        const gallery = document.getElementById('gallery');
-        const imageFolder = 'images/'; // Folder where images are stored
-        const imageCount = 30; // Number of images (adjust according to your needs)
+        document.addEventListener("DOMContentLoaded", function() {
+            const gallery = document.getElementById('gallery');
+            const imageFolder = 'images/'; // Folder where images are stored
+            const imageCount = 30; // Adjust to the number of images in your folder
+            const extensions = ['jpg', 'jpeg', 'png']; // Supported image formats
 
-        // Loop through and create image elements dynamically
-        for (let i = 1; i <= imageCount; i++) {
-            const img = document.createElement('img');
-            img.src = `${imageFolder}image${i}.jpg`; // Assuming images are named image1.jpg, image2.jpg, etc.
-            img.alt = `Image ${i}`;
-            gallery.appendChild(img);
-        }
+            for (let i = 1; i <= imageCount; i++) {
+                extensions.forEach(ext => {
+                    const img = document.createElement('img');
+                    img.src = `${imageFolder}${i}.${ext}`;
+                    img.alt = `Image ${i}`;
+                    img.onerror = () => img.remove(); // Remove if image doesn't exist
+                    gallery.appendChild(img);
+                });
+            }
+        });
     </script>
 </body>
 </html>
