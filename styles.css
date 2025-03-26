@@ -13,6 +13,10 @@ body {
     padding: 20px;
 }
 
+.header{
+    color: red;
+}
+
 img {
     width: 200px; /* Default image size */
     height: 200px; /* Default image size */
