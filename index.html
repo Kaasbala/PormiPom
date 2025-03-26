@@ -31,22 +31,35 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const gallery = document.getElementById('gallery');
-            const imageCount = 30; // Adjust to the number of images available
             const extensions = ['jpg', 'jpeg', 'png']; // Supported image formats
+            let index = 1;
 
-            for (let i = 1; i <= imageCount; i++) {
-                extensions.forEach(ext => {
-                    const img = new Image();
-                    img.alt = `Image ${i}`;
-                    img.onload = function() {
-                        gallery.appendChild(img);
-                    };
-                    img.onerror = function() {
-                        img.remove(); // Remove if image doesn't exist
-                    };
-                    img.src = `${i}.${ext}`; // Images are in the same directory
-                });
+            function loadImages() {
+                for (let i = 0; i < 50; i++) { // Load images in batches of 50
+                    extensions.forEach(ext => {
+                        const img = new Image();
+                        img.alt = `Image ${index}`;
+                        img.onload = function() {
+                            gallery.appendChild(img);
+                        };
+                        img.onerror = function() {
+                            img.remove(); // Remove if image doesn't exist
+                        };
+                        img.src = `${index}.${ext}`; // Images are in the same directory
+                    });
+                    index++;
+                }
             }
+
+            // Load initial set of images
+            loadImages();
+
+            // Infinite scroll event
+            window.addEventListener('scroll', () => {
+                if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
+                    loadImages();
+                }
+            });
         });
     </script>
 </body>
