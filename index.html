@@ -31,20 +31,21 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const gallery = document.getElementById('gallery');
-            const imageFolder = 'images/'; // Folder where images are stored
-            const imageCount = 30; // Adjust to the number of images in your folder
+            const imageCount = 30; // Adjust to the number of images available
             const extensions = ['jpg', 'jpeg', 'png']; // Supported image formats
 
             for (let i = 1; i <= imageCount; i++) {
-                let img = new Image();
-                img.alt = `Image ${i}`;
-                img.onload = function() {
-                    gallery.appendChild(img);
-                };
-                img.onerror = function() {
-                    img.remove(); // Remove if image doesn't exist
-                };
-                img.src = `${imageFolder}${i}.jpg`; // Try .jpg first
+                extensions.forEach(ext => {
+                    const img = new Image();
+                    img.alt = `Image ${i}`;
+                    img.onload = function() {
+                        gallery.appendChild(img);
+                    };
+                    img.onerror = function() {
+                        img.remove(); // Remove if image doesn't exist
+                    };
+                    img.src = `${i}.${ext}`; // Images are in the same directory
+                });
             }
         });
     </script>
