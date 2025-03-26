@@ -7,6 +7,20 @@
     <style>
         body {
             background-color: #000000; /* Full page black background*/
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            padding: 20px;
+            max-width: 100%;
+        }
+        .gallery img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 5px;
         }
     </style>
     <link rel="stylesheet" href="styles.css">
@@ -22,12 +36,16 @@
             const extensions = ['jpg', 'jpeg', 'png']; // Supported image formats
 
             for (let i = 1; i <= imageCount; i++) {
+                let found = false;
                 extensions.forEach(ext => {
-                    const img = document.createElement('img');
-                    img.src = `${i}.${ext}`;
-                    img.alt = `Image ${i}`;
-                    img.onerror = () => img.remove(); // Remove if image doesn't exist
-                    gallery.appendChild(img);
+                    if (!found) {
+                        const img = document.createElement('img');
+                        img.src = `${imageFolder}${i}.${ext}`;
+                        img.alt = `Image ${i}`;
+                        img.onerror = () => img.remove(); // Remove if image doesn't exist
+                        img.onload = () => found = true; // Stop checking other formats once found
+                        gallery.appendChild(img);
+                    }
                 });
             }
         });
