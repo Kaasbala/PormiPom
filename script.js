@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     images.forEach(img => {
         img.addEventListener('mouseenter', function() {
-            img.style.transform = 'scale(1.2)'; // Increase size
+            img.style.transform = 'scale(2)'; // Increase size
         });
 
         img.addEventListener('mouseleave', function() {
