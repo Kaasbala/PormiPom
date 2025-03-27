@@ -23,15 +23,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Attach hover effect only to gallery images
             img.addEventListener('mouseenter', function () {
-                img.style.transform = 'scale(1.8)';
-                img.style.zIndex = '10';
-                img.style.border = `3px solid ${getRandomColor()}`;
+                if (!img.classList.contains('fullscreen')) { // Prevent scaling for fullscreen
+                    img.style.transform = 'scale(1.8)';
+                    img.style.zIndex = '10';
+                    img.style.border = `3px solid ${getRandomColor()}`;
+                }
             });
 
             img.addEventListener('mouseleave', function () {
-                img.style.transform = 'scale(1)';
-                img.style.zIndex = '';
-                img.style.border = `2px solid ${getRandomColor()}`;
+                if (!img.classList.contains('fullscreen')) { // Prevent scaling for fullscreen
+                    img.style.transform = 'scale(1)';
+                    img.style.zIndex = '';
+                    img.style.border = `2px solid ${getRandomColor()}`;
+                }
             });
         });
     }
@@ -49,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 fullscreenImage = document.createElement('img');
                 fullscreenImage.src = clickedImage.src;
                 fullscreenImage.id = 'fullscreen-image';
+                fullscreenImage.classList.add('fullscreen'); // Mark fullscreen image
 
                 fullscreenImage.style.position = 'fixed';
                 fullscreenImage.style.top = '0';
