@@ -44,35 +44,46 @@ document.addEventListener("DOMContentLoaded", function () {
     gallery.addEventListener('click', function (event) {
         if (event.target.tagName === 'IMG') {
             const clickedImage = event.target;
-            let fullscreenImage = document.getElementById('fullscreen-image');
+            let fullscreenOverlay = document.getElementById('fullscreen-overlay');
 
-            if (fullscreenImage) {
-                fullscreenImage.remove();
+            if (fullscreenOverlay) {
+                fullscreenOverlay.remove();
                 document.body.style.overflow = 'auto';
             } else {
-                fullscreenImage = document.createElement('img');
+                // Create overlay
+                fullscreenOverlay = document.createElement('div');
+                fullscreenOverlay.id = 'fullscreen-overlay';
+                fullscreenOverlay.style.position = 'fixed';
+                fullscreenOverlay.style.top = '0';
+                fullscreenOverlay.style.left = '0';
+                fullscreenOverlay.style.width = '100vw';
+                fullscreenOverlay.style.height = '100vh';
+                fullscreenOverlay.style.background = 'rgba(0, 0, 0, 0.8)';
+                fullscreenOverlay.style.display = 'flex';
+                fullscreenOverlay.style.alignItems = 'center';
+                fullscreenOverlay.style.justifyContent = 'center';
+                fullscreenOverlay.style.zIndex = '1000';
+                fullscreenOverlay.style.cursor = 'pointer';
+
+                // Create fullscreen image inside overlay
+                const fullscreenImage = document.createElement('img');
                 fullscreenImage.src = clickedImage.src;
                 fullscreenImage.id = 'fullscreen-image';
-                fullscreenImage.classList.add('fullscreen'); // Mark fullscreen image
-
-                fullscreenImage.style.position = 'fixed';
-                fullscreenImage.style.top = '0';
-                fullscreenImage.style.left = '0';
-                fullscreenImage.style.width = '100vw';
-                fullscreenImage.style.height = '100vh';
-                fullscreenImage.style.objectFit = 'contain';
-                fullscreenImage.style.background = 'rgba(0, 0, 0, 0.8)';
+                fullscreenImage.classList.add('fullscreen');
+                fullscreenImage.style.maxWidth = '90vw';
+                fullscreenImage.style.maxHeight = '90vh';
                 fullscreenImage.style.border = `4px solid ${getRandomColor()}`;
-                fullscreenImage.style.zIndex = '1000';
-                fullscreenImage.style.cursor = 'pointer';
                 fullscreenImage.style.boxShadow = '0px 0px 20px rgba(0,0,0,0.5)';
 
-                fullscreenImage.addEventListener('click', function () {
-                    fullscreenImage.remove();
+                // Close fullscreen on click
+                fullscreenOverlay.addEventListener('click', function () {
+                    fullscreenOverlay.remove();
                     document.body.style.overflow = 'auto';
                 });
 
-                document.body.appendChild(fullscreenImage);
+                // Append image to overlay
+                fullscreenOverlay.appendChild(fullscreenImage);
+                document.body.appendChild(fullscreenOverlay);
                 document.body.style.overflow = 'hidden';
             }
         }
