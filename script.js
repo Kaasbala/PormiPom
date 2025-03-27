@@ -49,6 +49,8 @@ document.addEventListener("DOMContentLoaded", function () {
             if (fullscreenImage) {
                 fullscreenImage.remove();
                 document.body.style.overflow = 'auto';
+                // Remove the fullscreen class when exiting fullscreen
+                document.querySelectorAll('img').forEach(img => img.classList.remove('fullscreen-image'));
             } else {
                 fullscreenImage = document.createElement('img');
                 fullscreenImage.src = clickedImage.src;
@@ -69,10 +71,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 fullscreenImage.addEventListener('click', function () {
                     fullscreenImage.remove();
                     document.body.style.overflow = 'auto';
+                    // Remove the fullscreen class when exiting fullscreen
+                    document.querySelectorAll('img').forEach(img => img.classList.remove('fullscreen-image'));
                 });
 
                 document.body.appendChild(fullscreenImage);
                 document.body.style.overflow = 'hidden';
+
+                // Add the fullscreen class to all images to prevent hover effect
+                document.querySelectorAll('img').forEach(img => img.classList.add('fullscreen-image'));
             }
         }
     });

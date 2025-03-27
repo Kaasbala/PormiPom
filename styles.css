@@ -31,7 +31,8 @@ img:focus {
     outline: none;
 }
 
-img:hover {
+/* Disable hover effect on fullscreen image */
+img:not(.fullscreen-image):hover {
     transform: scale(1.2); /* Increase size of image when hovered */
     z-index: 10; /* Bring image to the front */
 }
