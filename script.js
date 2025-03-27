@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const imageCount = 200; // Set to load 200 images
     const extensions = ['jpg', 'jpeg', 'png']; // Supported image formats
 
-    // List of "sexy" colors for the borders
+    // List of colors for the borders
     const borderColors = ['#FF69B4', '#C71585', '#FF1493', '#800080', '#FF6347', '#DC143C', '#FF4500', '#FF00FF', '#8A2BE2'];
 
     // Function to get a random color from the array
@@ -19,10 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
             img.src = `${imageFolder}${i}.${ext}`;
             img.alt = `Image ${i}`;
             img.onerror = () => img.remove(); // Remove image if it doesn't exist
-
-            // Set random border color for each image
             img.style.border = `2px solid ${getRandomColor()}`;
-
             gallery.appendChild(img);
         });
     }
@@ -31,28 +28,29 @@ document.addEventListener("DOMContentLoaded", function () {
     gallery.addEventListener('click', function (event) {
         if (event.target.tagName === 'IMG') {
             const clickedImage = event.target;
-
-            // Check if a fullscreen duplicate already exists
             let fullscreenImage = document.getElementById('fullscreen-image');
+
             if (fullscreenImage) {
                 fullscreenImage.remove(); // Remove existing fullscreen image
                 document.body.style.overflow = 'auto'; // Restore scrolling
             } else {
-                // Create a new fullscreen image
                 fullscreenImage = document.createElement('img');
                 fullscreenImage.src = clickedImage.src;
                 fullscreenImage.id = 'fullscreen-image';
+
+                // **Apply fullscreen styles**
                 fullscreenImage.style.position = 'fixed';
-                fullscreenImage.style.top = '50%';
-                fullscreenImage.style.left = '50%';
-                fullscreenImage.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                fullscreenImage.style.top = '0';
+                fullscreenImage.style.left = '0';
+                fullscreenImage.style.width = '100vw';  // Full viewport width
+                fullscreenImage.style.height = '100vh'; // Full viewport height
+                fullscreenImage.style.objectFit = 'contain'; // Ensure it scales properly
+                fullscreenImage.style.background = 'rgba(0, 0, 0, 0.8)'; // Darken background
                 fullscreenImage.style.border = `4px solid ${getRandomColor()}`;
                 fullscreenImage.style.zIndex = '1000';
-                fullscreenImage.style.maxWidth = '90vw';
-                fullscreenImage.style.maxHeight = '90vh';
                 fullscreenImage.style.cursor = 'pointer';
                 fullscreenImage.style.boxShadow = '0px 0px 20px rgba(0,0,0,0.5)';
-                
+
                 // Remove fullscreen image on click
                 fullscreenImage.addEventListener('click', function () {
                     fullscreenImage.remove();
