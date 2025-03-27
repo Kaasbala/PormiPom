@@ -20,6 +20,19 @@ document.addEventListener("DOMContentLoaded", function () {
             img.onerror = () => img.remove();
             img.style.border = `2px solid ${getRandomColor()}`;
             gallery.appendChild(img);
+
+            // Attach hover effect only to gallery images
+            img.addEventListener('mouseenter', function () {
+                img.style.transform = 'scale(1.8)';
+                img.style.zIndex = '10';
+                img.style.border = `3px solid ${getRandomColor()}`;
+            });
+
+            img.addEventListener('mouseleave', function () {
+                img.style.transform = 'scale(1)';
+                img.style.zIndex = '';
+                img.style.border = `2px solid ${getRandomColor()}`;
+            });
         });
     }
 
@@ -58,25 +71,5 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.body.style.overflow = 'hidden';
             }
         }
-    });
-
-    // Hover effect only for images inside the gallery, NOT the fullscreen one
-    const images = gallery.querySelectorAll('img');
-    images.forEach(img => {
-        img.addEventListener('mouseenter', function () {
-            if (!document.getElementById('fullscreen-image')) { // Ensure it doesn't apply to fullscreen image
-                img.style.transform = 'scale(1.8)';
-                img.style.zIndex = '10';
-                img.style.border = `3px solid ${getRandomColor()}`;
-            }
-        });
-
-        img.addEventListener('mouseleave', function () {
-            if (!document.getElementById('fullscreen-image')) { // Ensure it doesn't apply to fullscreen image
-                img.style.transform = 'scale(1)';
-                img.style.zIndex = '';
-                img.style.border = `2px solid ${getRandomColor()}`;
-            }
-        });
     });
 });
