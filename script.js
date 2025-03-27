@@ -21,22 +21,20 @@ document.addEventListener("DOMContentLoaded", function () {
             img.style.border = `2px solid ${getRandomColor()}`;
             gallery.appendChild(img);
 
-            // Attach hover effect only to gallery images
+            // Attach hover effect only if fullscreen image is not active
             img.addEventListener('mouseenter', function () {
-                let fullscreenImage = document.getElementById('fullscreen-image');
-                if (!fullscreenImage) {
-                img.style.transform = 'scale(1.8)';
-                img.style.zIndex = '10';
-                img.style.border = `3px solid ${getRandomColor()}`;
+                if (!document.getElementById('fullscreen-image')) {
+                    img.style.transform = 'scale(1.8)';
+                    img.style.zIndex = '10';
+                    img.style.border = `3px solid ${getRandomColor()}`;
                 }
             });
 
             img.addEventListener('mouseleave', function () {
-                let fullscreenImage = document.getElementById('fullscreen-image');
-                if (!fullscreenImage) {
-                img.style.transform = 'scale(1)';
-                img.style.zIndex = '';
-                img.style.border = `2px solid ${getRandomColor()}`;
+                if (!document.getElementById('fullscreen-image')) {
+                    img.style.transform = 'scale(1)';
+                    img.style.zIndex = '';
+                    img.style.border = `2px solid ${getRandomColor()}`;
                 }
             });
         });
